@@ -209,4 +209,7 @@ include_directories(
 # catkin_add_nosetests(test)
 
 add_executable(drive_bot src/drive_bot.cpp)
+add_executable(process_image src/process_image.cpp)
+
 target_link_libraries(drive_bot ${catkin_LIBRARIES})
+target_link_libraries(process_image ${catkin_LIBRARIES})
