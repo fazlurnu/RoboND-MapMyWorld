@@ -2,9 +2,8 @@
 
 <robot name="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo"/>
-
   <link name="robot_footprint"></link>
+  <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo" />
 
   <joint name="robot_footprint_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
@@ -36,62 +35,6 @@
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
       <geometry>
         <box size=".4 .2 .1"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name='left_rear_wheel'>
-    <pose>0 0 0 0 0 0</pose>
-
-    <inertial>
-      <mass value="5.0"/>
-      <origin xyz="0.0 0 0" rpy=" 0 1.5707 1.5707"/>
-      <inertia
-          ixx="0.1" ixy="0" ixz="0"
-          iyy="0.1" iyz="0"
-          izz="0.1"
-      />
-    </inertial>
-
-    <collision name='left_rear_wheel_collision'>
-      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
-      <geometry>
-        <cylinder radius="0.1" length="0.05"/>
-      </geometry>
-    </collision>
-
-    <visual name='left_rear_wheel_visual'>
-      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
-      <geometry>
-        <cylinder radius="0.1" length="0.05"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name='right_rear_wheel'>
-    <pose>0 0 0 0 0 0</pose>
-
-    <inertial>
-      <mass value="5.0"/>
-      <origin xyz="0.0 0 0" rpy=" 0 1.5707 1.5707"/>
-      <inertia
-          ixx="0.1" ixy="0" ixz="0"
-          iyy="0.1" iyz="0"
-          izz="0.1"
-      />
-    </inertial>
-
-    <collision name='right_rear_wheel_collision'>
-      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
-      <geometry>
-        <cylinder radius="0.1" length="0.05"/>
-      </geometry>
-    </collision>
-
-    <visual name='right_rear_wheel_visual'>
-      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
-      <geometry>
-        <cylinder radius="0.1" length="0.05"/>
       </geometry>
     </visual>
   </link>
@@ -152,36 +95,92 @@
     </visual>
   </link>
 
-  <joint type="continuous" name="left_rear_wheel_hinge">
-    <origin xyz="0 0.15 0" rpy="0 0 0"/>
-    <child link="left_rear_wheel"/>
-    <parent link="chassis"/>
-    <axis xyz="0 1 0" rpy="0 0 0"/>
-    <limit effort="10000" velocity="1000"/>
-    <dynamics damping="1.0" friction="1.0"/>
-  </joint>
+  <link name='left_rear_wheel'>
+    <pose>0 0 0 0 0 0</pose>
 
-  <joint type="continuous" name="right_rear_wheel_hinge">
-    <origin xyz="0 -0.15 0" rpy="0 0 0"/>
-    <child link="right_rear_wheel"/>
-    <parent link="chassis"/>
-    <axis xyz="0 1 0" rpy="0 0 0"/>
-    <limit effort="10000" velocity="1000"/>
-    <dynamics damping="1.0" friction="1.0"/>
-  </joint>
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0.0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"
+      />
+    </inertial>
 
-    <joint type="continuous" name="left_front_wheel_hinge">
-    <origin xyz="0 0.15 0" rpy="0 0 0"/>
+    <collision name='left_rear_wheel_collision'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+
+    <visual name='left_rear_wheel_visual'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name='right_rear_wheel'>
+    <pose>0 0 0 0 0 0</pose>
+
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0.0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"
+      />
+    </inertial>
+
+    <collision name='right_rear_wheel_collision'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+
+    <visual name='right_rear_wheel_visual'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint type="continuous" name="left_front_wheel_hinge">
+    <origin xyz="0.175 0.15 0" rpy="0 0 0"/>
     <child link="left_front_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="10000" velocity="1000"/>
     <dynamics damping="1.0" friction="1.0"/>
   </joint>
-
-  <joint type="continuous" name="right_rear_front_hinge">
-    <origin xyz="0 -0.15 0" rpy="0 0 0"/>
+  
+  <joint type="continuous" name="right_front_wheel_hinge">
+    <origin xyz="0.175 -0.15 0" rpy="0 0 0"/>
     <child link="right_front_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+  <joint type="continuous" name="left_rear_wheel_hinge">
+    <origin xyz="-0.175 0.15 0" rpy="0 0 0"/>
+    <child link="left_rear_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+  
+  <joint type="continuous" name="right_rear_wheel_hinge">
+    <origin xyz="-0.175 -0.15 0" rpy="0 0 0"/>
+    <child link="right_rear_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="10000" velocity="1000"/>
@@ -192,9 +191,8 @@
     <pose>0 0 0 0 0 0</pose>
 
     <inertial>
-      <mass value="0.1"/>>
-      <origin xyz="0 0 0" rpy=" 0 0 0"/>
-      <box_inertia m="0.1" x="0.05" y="0.05" z="0.05"/>
+      <mass value="0.1"/>
+      <origin xyz="0.0 0 0" rpy="0.0 0 0"/>
       <inertia
           ixx="1e-6" ixy="0" ixz="0"
           iyy="1e-6" iyz="0"
@@ -202,21 +200,21 @@
       />
     </inertial>
 
-    <collision name='camera_collision'>
+    <collision name='collision'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/> 
       <geometry>
-        <box size=".05 .05 .05"/>
+        <box size="0.05 0.05 0.05"/>
       </geometry>
     </collision>
 
     <visual name='camera_visual'>
-      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/> 
       <geometry>
-        <box size=".05 .05 .05"/>
+        <box size="0.05 0.05 0.05"/>
       </geometry>
     </visual>
   </link>
-
+  
   <joint type="fixed" name="camera_joint">
     <origin xyz="0.2 0 0" rpy="0 0 0"/>
     <child link="camera"/>
@@ -230,8 +228,8 @@
     <pose>0 0 0 0 0 0</pose>
 
     <inertial>
-      <mass value="1e-5"/>>
-      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <mass value="1e-5"/>
+      <origin xyz="0.0 0 0" rpy="0.0 0 0"/>
       <inertia
           ixx="1e-6" ixy="0" ixz="0"
           iyy="1e-6" iyz="0"
@@ -239,7 +237,7 @@
       />
     </inertial>
 
-    <collision name='hokuyo_collision'>
+    <collision name='collision'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/> 
       <geometry>
         <box size="0.1 0.1 0.1"/>
@@ -247,34 +245,45 @@
     </collision>
 
     <visual name='hokuyo_visual'>
-      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/> 
       <geometry>
         <mesh filename="package://my_robot/meshes/hokuyo.dae"/>
       </geometry>
     </visual>
   </link>
 
-  <joint name="hokuyo_joint" type="fixed">
-    <origin xyz="0.15 0 0.1" rpy="0.0 0.0 0.0"/>
-    <parent link="chassis"/>
+  <joint type="fixed" name="hokuyo_joint">
+    <origin xyz="0.15 0.0 0.1" rpy="0 0 0"/>
     <child link="hokuyo"/>
-    <axis xyz="0 1 0"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
 
-  <gazebo reference="left_wheel">
+  <gazebo reference="left_rear_wheel">
     <material>Gazebo/Green</material>
   </gazebo>
 
-  <gazebo reference="right_wheel">
+  <gazebo reference="right_rear_wheel">
     <material>Gazebo/Green</material>
+  </gazebo>
+
+
+  <gazebo reference="left_front_wheel">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="right_front_wheel">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="camera">
+    <material>Gazebo/Red</material>
   </gazebo>
 
   <gazebo reference="chassis">
     <material>Gazebo/Yellow</material>
-  </gazebo>
-
-  <gazebo reference="camera">
-    <material>Gazebo/Black</material>
   </gazebo>
 
 </robot>
