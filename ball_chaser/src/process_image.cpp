@@ -28,7 +28,6 @@ void process_image_callback(const sensor_msgs::Image img)
     int image_height = img.height;
     int image_width = img.width;
     int step = img.step;
-    float x_center_of_image = img.width/2;
     
     float command_lin_x = 0;
     float command_ang_z = 0;
@@ -36,6 +35,9 @@ void process_image_callback(const sensor_msgs::Image img)
     int x_pos;
     int total_mass = 0;
     float sum_of_x = 0;
+
+    float x_center_of_mass;
+    float x_center_of_image = img.width/2;
 
     int r_channel;
     int g_channel;
@@ -58,7 +60,7 @@ void process_image_callback(const sensor_msgs::Image img)
         }
     }
 
-    float x_center_of_mass = sum_of_x/total_mass;
+    x_center_of_mass = sum_of_x/total_mass;
 
     if(total_mass > 0){
         command_lin_x = 0.5;
