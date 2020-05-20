@@ -26,21 +26,33 @@ void process_image_callback(const sensor_msgs::Image img)
 
     int white_pixel = 255;
     int image_height = img.height;
+    int image_width = img.width;
     int step = img.step;
-    float x_center_of_image = step/2;
+    float x_center_of_image = img.width/2;
     
     float command_lin_x = 0;
     float command_ang_z = 0;
 
+    int x_pos;
     int total_mass = 0;
     float sum_of_x = 0;
 
-    float kp = 2; //gain for turning
+    int r_channel;
+    int g_channel;
+    int b_channel;
+
+    float kp = 5; //gain for turning
 
     for(int i=0; i < image_height; i++){
-        for(int j=0; j < step; j++){
-            if(img.data[i*step + j] == white_pixel){
-                sum_of_x += j;
+        for(int j=0; j+2 < step; j+=3){
+            r_channel = img.data[i*step + j];
+            g_channel = img.data[i*step + j+1];
+            b_channel = img.data[i*step + j+2];
+
+            if(r_channel == 255 && g_channel == 255 && b_channel == 255){
+                // take the x location
+                x_pos = (i*step + j) % step / 3;
+                sum_of_x += x_pos;
                 total_mass++;
             }
         }
@@ -49,7 +61,7 @@ void process_image_callback(const sensor_msgs::Image img)
     float x_center_of_mass = sum_of_x/total_mass;
 
     if(total_mass > 0){
-        command_lin_x = 0.1;
+        command_lin_x = 0.5;
         command_ang_z = (x_center_of_image - x_center_of_mass)/x_center_of_image * kp; //normalized
     } else{
         command_lin_x = 0.0;
