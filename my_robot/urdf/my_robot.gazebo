@@ -19,7 +19,7 @@
       <robotBaseFrame>robot_footprint</robotBaseFrame>
       <publishWheelTF>false</publishWheelTF>
       <publishWheelJointState>false</publishWheelJointState>
-      <broadcastTF>false</broadcastTF>
+      <broadcastTF>true</broadcastTF>
       <covariance_x>0.0001</covariance_x>
       <covariance_y>0.0001</covariance_y>
       <covariance_yaw>0.001</covariance_yaw>
