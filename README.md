@@ -1,7 +1,9 @@
 # RoboND-WhereAmI
 
 ![Localization](/images/Localized_RViz.jpg)
+Localized Robot
 ![Transformation Tree](/images/frames.png)
+Transformation Tree
 
 ## Overview  
 In this project you'll utilize ROS AMCL package to accurately localize a mobile robot inside a map in the Gazebo simulation environments. Here are the steps to learn several aspects of robotic software engineering with a focus on ROS:  
