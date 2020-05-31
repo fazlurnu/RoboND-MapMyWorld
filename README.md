@@ -1,4 +1,4 @@
-# RoboND-WhereAmI
+# RoboND-MapMyWorld
 
 ![Localization_gif](/images/ezgif-6-8911f85b5f6d.gif)
 
