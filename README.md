@@ -4,7 +4,7 @@
 
 Localized Robot
 
-![Transformation Tree](/images/frames.png)
+![Transformation Tree](/images/frames_with_rgbd.png)
 
 Transformation Tree
 
