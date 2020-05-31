@@ -4,7 +4,7 @@
 
 SLAM Database
 
-![Mapping Result](/images/rtabmap_2.png)
+![Mapping Result](/images/rtabmap_map.png)
 
 Mapping Result
 
