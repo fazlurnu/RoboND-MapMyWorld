@@ -23,6 +23,7 @@ sudo apt-get install ros-kinetic-navigation
 sudo apt-get install ros-kinetic-map-server
 sudo apt-get install ros-kinetic-move-base
 sudo apt-get install ros-kinetic-amcl
+sudo apt-get install ros-kinetic-rtabmap-ros
 ```
 
 * make >= 4.1(mac, linux), 3.81(Windows)
@@ -38,23 +39,24 @@ sudo apt-get install ros-kinetic-amcl
 * Clone this repository into /home/workspace/catkin_ws/src
 ```
 cd /home/workspace/catkin_ws/src
-git clone https://github.com/fazlurnu/RoboND-WhereAmI.git
+git clone https://github.com/fazlurnu/RoboND-MapMyWorld.git
 ```
 * Open the repository and make  
 ```
 cd /home/workspace/catkin_ws/
 catkin_make
 ```
-* Launch my_robot in Gazebo to load both the world and plugins  
+* Launch world.launch in Gazebo to load both the world and plugins  
 ```
 roslaunch my_robot world.launch
 ```  
-* Launch amcl node  
+* Open a new terminal and run teleop node 
 ```
-roslaunch my_robot amcl.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```  
+* Launch the mapping launch file
+```
+roslaunch my_robot mapping.launch
 ```  
 * Testing  
-You have two options to control your robot while it localize itself here:  
-  * Send navigation goal via RViz  
-  * Send move command via teleop package.  
-Navigate your robot, observe its performance and tune your parameters for AMCL.  
+Navigate the robot around by giving command from the teleop terminal. When all areas have been visited, terminate the mapping nodes in its terminal
