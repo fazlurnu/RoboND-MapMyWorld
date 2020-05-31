@@ -1,8 +1,12 @@
 # RoboND-MapMyWorld
 
-![Localization_gif](/images/ezgif-6-8911f85b5f6d.gif)
+![SLAM Database](/images/rtabmap_1.png)
 
-Localized Robot
+SLAM Database
+
+![Mapping Result](/images/rtabmap_2.png)
+
+Mapping Result
 
 ![Transformation Tree](/images/frames_with_rgbd.png)
 
